@@ -29,10 +29,12 @@ require __DIR__ . '/../includes/header.php';
 </div>
 <div class="grid g2 mb">
     <div class="card">
-        <h2>Per bulan</h2><?= bar_chart($monthly) ?>
+        <h2>Food waste per bulan (Bar Chart)</h2>
+        <div style="height:240px;position:relative"><canvas id="wastePageBar"></canvas></div>
     </div>
     <div class="card">
-        <h2>Tren</h2><?= line_chart($monthly) ?>
+        <h2>Tren food waste (Line Chart)</h2>
+        <div style="height:240px;position:relative"><canvas id="wastePageLine"></canvas></div>
     </div>
 </div>
 <div class="grid g2">
@@ -43,4 +45,22 @@ require __DIR__ . '/../includes/header.php';
         <h2>Bahan paling sering terbuang</h2><?= hbars($top) ?>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const wpLabels = <?= json_encode(array_keys($monthly)) ?>;
+const wpData = <?= json_encode(array_values($monthly)) ?>;
+
+new Chart(document.getElementById('wastePageBar'), {
+  type: 'bar',
+  data: { labels: wpLabels, datasets: [{ label: 'Waste', data: wpData, backgroundColor: '#588157', borderRadius: 8 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+});
+
+new Chart(document.getElementById('wastePageLine'), {
+  type: 'line',
+  data: { labels: wpLabels, datasets: [{ label: 'Tren', data: wpData, borderColor: '#344E41', backgroundColor: 'rgba(88,129,87,0.16)', fill: true, tension: 0.35 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+});
+</script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

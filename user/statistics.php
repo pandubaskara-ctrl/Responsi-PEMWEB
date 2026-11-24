@@ -28,7 +28,7 @@ require __DIR__ . '/../includes/header.php';
 </div>
 <div class="grid g3 mb">
   <div class="card stat">
-    <div class="ico">🥕</div><span class="num"><?= $c['total'] ?></span><span class="lbl">Bahan di pantry</span>
+    <div class="ico">🥕</div><span class="num"><?= $c['total'] ?></span><span class="lbl">Total bahan di pantry</span>
   </div>
   <div class="card stat">
     <div class="ico">🗑️</div><span class="num"><?= $total ?></span><span class="lbl">Total catatan waste</span>
@@ -40,19 +40,88 @@ require __DIR__ . '/../includes/header.php';
 </div>
 <div class="grid g2 mb">
   <div class="card">
-    <h2>Food waste per bulan</h2><?= bar_chart($monthly) ?>
+    <h2>Food waste per bulan (Bar Chart)</h2>
+    <div style="height:260px;position:relative"><canvas id="wasteBarChart"></canvas></div>
   </div>
   <div class="card">
-    <h2>Distribusi status bahan</h2>
-    <?= doughnut([['Fresh', $c['fresh'], '#588157'], ['Expiring Soon', $c['soon'], '#E9A23B'], ['Expired', $c['expired'], '#D96C5F']]) ?>
+    <h2>Distribusi status bahan (Doughnut Chart)</h2>
+    <div style="height:260px;position:relative"><canvas id="pantryDoughnutChart"></canvas></div>
   </div>
 </div>
 <div class="grid g-main">
   <div class="card">
-    <h2>Tren food waste</h2><?= line_chart($monthly) ?>
+    <h2>Tren food waste (Line Chart)</h2>
+    <div style="height:260px;position:relative"><canvas id="wasteLineChart"></canvas></div>
   </div>
   <div class="card">
     <h2>Alasan terbanyak</h2><?= hbars($reasons) ?><h2 class="mt">Paling sering terbuang</h2><?= hbars($top) ?>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const monthLabels = <?= json_encode(array_keys($monthly)) ?>;
+const monthValues = <?= json_encode(array_values($monthly)) ?>;
+
+new Chart(document.getElementById('wasteBarChart'), {
+  type: 'bar',
+  data: {
+    labels: monthLabels,
+    datasets: [{
+      label: 'Jumlah Catatan Waste',
+      data: monthValues,
+      backgroundColor: '#588157',
+      borderRadius: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+  }
+});
+
+new Chart(document.getElementById('pantryDoughnutChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Fresh', 'Expiring Soon', 'Expired'],
+    datasets: [{
+      data: [<?= (int)$c['fresh'] ?>, <?= (int)$c['soon'] ?>, <?= (int)$c['expired'] ?>],
+      backgroundColor: ['#588157', '#E9A23B', '#D96C5F'],
+      borderWidth: 2,
+      borderColor: '#ffffff'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '62%',
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+
+new Chart(document.getElementById('wasteLineChart'), {
+  type: 'line',
+  data: {
+    labels: monthLabels,
+    datasets: [{
+      label: 'Tren Food Waste',
+      data: monthValues,
+      borderColor: '#344E41',
+      backgroundColor: 'rgba(88, 129, 87, 0.16)',
+      fill: true,
+      tension: 0.35,
+      pointRadius: 5,
+      pointBackgroundColor: '#344E41'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+  }
+});
+</script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

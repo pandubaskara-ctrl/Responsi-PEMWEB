@@ -24,6 +24,7 @@ if (is_post()) {
       }
       if ($wid) {
         $pdo->prepare("UPDATE food_waste SET food_name=?,quantity=?,unit=?,waste_reason=?,waste_date=? WHERE waste_id=? AND user_id=?")->execute([$name, $qty, $unit, $reason, $date, $wid, $uid]);
+        log_activity('Memperbarui catatan food waste: ' . num($qty) . " $unit $name ($reason)");
         flash('Catatan diperbarui.');
       } else {
         $pdo->prepare("INSERT INTO food_waste(user_id,food_id,food_name,quantity,unit,waste_reason,waste_date) VALUES(?,?,?,?,?,?,?)")->execute([$uid, $food, $name, $qty, $unit, $reason, $date]);
@@ -35,6 +36,7 @@ if (is_post()) {
     }
   } elseif ($act === 'delete') {
     $pdo->prepare("DELETE FROM food_waste WHERE waste_id=? AND user_id=?")->execute([$wid, $uid]);
+    log_activity('Menghapus catatan food waste ID #' . $wid);
     flash('Catatan dihapus.');
   }
   redirect('user/food-waste.php');

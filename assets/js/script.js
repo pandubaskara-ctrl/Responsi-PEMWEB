@@ -1,4 +1,3 @@
-// Sidebar toggle (mobile), konfirmasi hapus, auto-hide flash
 document.addEventListener("DOMContentLoaded", function () {
   var btn = document.getElementById("menuBtn"),
     sb = document.getElementById("sidebar");

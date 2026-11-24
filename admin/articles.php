@@ -15,13 +15,16 @@ if (is_post()) {
     $img = upload_image('image', 'articles');
     if ($id) {
       $pdo->prepare("UPDATE articles SET article_category_id=?,title=?,content=?,image_url=COALESCE(?,image_url) WHERE article_id=?")->execute([$cat, $title, $content, $img, $id]);
+      log_activity('Memperbarui artikel: ' . $title);
       flash('Artikel diperbarui.');
     } else {
       $pdo->prepare("INSERT INTO articles(article_category_id,admin_id,title,content,image_url) VALUES(?,?,?,?,?)")->execute([$cat, $u['id'], $title, $content, $img]);
+      log_activity('Mempublikasikan artikel baru: ' . $title);
       flash('Artikel dipublikasikan.');
     }
   } elseif ($act === 'delete') {
     $pdo->prepare("DELETE FROM articles WHERE article_id=?")->execute([$id]);
+    log_activity('Menghapus artikel ID #' . $id);
     flash('Artikel dihapus.');
   }
   redirect('admin/articles.php');

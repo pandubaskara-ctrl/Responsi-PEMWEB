@@ -1,5 +1,4 @@
 <?php
-// Variabel yang diharapkan: $pageTitle (string), $active (opsional, nama file menu aktif)
 $u = auth();
 $isAdmin = $u['role'] === 'admin';
 $active = $active ?? basename($_SERVER['SCRIPT_NAME']);

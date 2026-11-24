@@ -1,5 +1,4 @@
 <?php
-// Konfigurasi Pantrio — sesuaikan dengan XAMPP kamu
 define('BASE_URL', '/pantrio');   // nama folder project di htdocs (ubah jika berbeda)
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'pantrio');

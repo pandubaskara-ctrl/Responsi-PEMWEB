@@ -90,7 +90,6 @@ function upload_image($field, $sub)
 }
 
 /* ---------- Kedaluwarsa ---------- */
-// return [label, css-class, selisih-hari]
 function expiry_info($date)
 {
     $diff = (int)(new DateTime('today'))->diff(new DateTime($date))->format('%r%a');
@@ -127,7 +126,6 @@ function pantry_counts($uid)
     return $c;
 }
 
-// Notifikasi dibuat saat halaman dibuka (satu notifikasi per bahan per status)
 function sync_notifications($uid)
 {
     global $pdo;
@@ -165,7 +163,6 @@ function default_list_id($uid)
 }
 
 /* ---------- Rekomendasi resep ---------- */
-// Match Rate = bahan tersedia / total bahan resep x 100%
 function recipe_matches($uid, $q = '', $cat = '')
 {
     global $pdo;
@@ -286,7 +283,7 @@ function line_chart($data)
     return $s . '</svg>';
 }
 function doughnut($seg)
-{ // [[label, value, color], ...]
+{ 
     $tot = array_sum(array_column($seg, 1));
     if (!$tot) return '<div class="empty"><b>🌱</b>Belum ada data.</div>';
     $acc = 0;
@@ -302,7 +299,7 @@ function doughnut($seg)
     return $h . '</ul></div>';
 }
 function hbars($rows)
-{ // [label => value]
+{ 
     if (!$rows) return '<div class="empty"><b>🌱</b>Belum ada data.</div>';
     $max = max($rows);
     $h = '';

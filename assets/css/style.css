@@ -29,7 +29,7 @@ img{max-width:100%;display:block}
 .menu-btn{display:none;background:var(--forest);color:#fff;border:0;border-radius:10px;width:40px;height:40px;font-size:1.2rem;cursor:pointer}
 .bell{position:relative;background:var(--white);border-radius:12px;padding:8px 12px;box-shadow:var(--shadow);color:var(--forest);font-weight:600}
 .bell b{background:var(--danger);color:#fff;border-radius:99px;font-size:.7rem;padding:1px 7px;margin-left:4px}
-.content{padding:0 32px 48px;max-width:1280px}
+.content {  padding: 0 32px 48px;  max-width: 100%;}
 .page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .page-head p{color:var(--muted);margin-top:4px}
 

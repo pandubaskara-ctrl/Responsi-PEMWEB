@@ -70,25 +70,9 @@ Aplikasi ini terbagi menjadi dua hak akses utama (**User** dan **Admin**) dengan
 
 * **Web Server & Environment:** Apache (XAMPP)
 
-## 4. Aset Media Pendukung (`Social Media Pantrio`)
-
-Proyek ini dilengkapi dengan koleksi aset media promosi dan demonstrasi fitur (`Social Media Pantrio/`) yang terdiri dari **5 file video (`.mp4`)** dan **4 file gambar (`.png`)** dengan rincian sebagai berikut:
-
-| Nama File | Tipe Media | Keterangan |
-| :--- | :--- | :--- |
-| `1.mp4` | Video | Konten video demonstrasi / promosi bagian 1 |
-| `2.mp4` | Video | Konten video demonstrasi / promosi bagian 2 |
-| `3.png` | Gambar | Materi visual / infografis fitur Pantrio 1 |
-| `4.png` | Gambar | Materi visual / infografis fitur Pantrio 2 |
-| `5.png` | Gambar | Materi visual / infografis fitur Pantrio 3 |
-| `6.mp4` | Video | Konten video demonstrasi / promosi bagian 3 |
-| `7.png` | Gambar | Materi visual / infografis fitur Pantrio 4 |
-| `8.mp4` | Video | Konten video demonstrasi / promosi bagian 4 |
-| `9.mp4` | Video | Konten video demonstrasi / promosi bagian 5 |
-
 *(Catatan: File sistem bawaan macOS seperti `.DS_Store` dan direktori `__MACOSX/` dapat diabaikan atau dihapus saat ekstraksi).*
 
-## 5. Panduan Instalasi dan Konfigurasi
+## 4. Panduan Instalasi dan Konfigurasi
 
 1. **Clone atau Ekstrak Proyek**
 
@@ -120,7 +104,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'pantrio');
 ```
 
-## 6. Panduan Menjalankan Aplikasi
+## 5. Panduan Menjalankan Aplikasi
 
 1. Pastikan server **Apache** dan **MySQL** dalam keadaan aktif (`Running`) di XAMPP.
 

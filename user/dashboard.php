@@ -31,6 +31,7 @@ $ringColor = $health >= 70 ? '#588157' : ($health >= 40 ? '#E9A23B' : '#D96C5F')
 $pageTitle = 'Dashboard';
 require __DIR__ . '/../includes/header.php';
 ?>
+
 <div class="page-head">
   <div>
     <h1><?= $greet ?>, <?= e(explode(' ', $u['name'])[0]) ?>! 🌿</h1>
@@ -41,32 +42,46 @@ require __DIR__ . '/../includes/header.php';
 
 <div class="grid g4 mb">
   <div class="card stat">
-    <div class="ico">🥕</div><span class="num"><?= $c['total'] ?></span><span class="lbl">Total Bahan Makanan</span>
+    <div class="ico">🥕</div>
+    <span class="num"><?= $c['total'] ?></span>
+    <span class="lbl">Total Bahan Makanan</span>
   </div>
   <div class="card stat">
-    <div class="ico">🌿</div><span class="num"><?= $c['fresh'] ?></span><span class="lbl">Bahan Masih Fresh</span>
+    <div class="ico">🌿</div>
+    <span class="num"><?= $c['fresh'] ?></span>
+    <span class="lbl">Bahan Masih Fresh</span>
   </div>
   <div class="card stat">
-    <div class="ico">⏳</div><span class="num"><?= $c['soon'] ?></span><span class="lbl">Hampir Kedaluwarsa</span>
+    <div class="ico">⏳</div>
+    <span class="num"><?= $c['soon'] ?></span>
+    <span class="lbl">Hampir Kedaluwarsa</span>
   </div>
   <div class="card stat">
-    <div class="ico">⚠️</div><span class="num"><?= $c['expired'] ?></span><span class="lbl">Sudah Expired</span>
+    <div class="ico">⚠️</div>
+    <span class="num"><?= $c['expired'] ?></span>
+    <span class="lbl">Sudah Expired</span>
   </div>
 </div>
 
 <div class="grid g2 mb">
   <div class="card stat">
-    <div class="ico">🗑️</div><span class="num"><?= $wasteCount ?></span><span class="lbl">Total Catatan Food Waste</span>
+    <div class="ico">🗑️</div>
+    <span class="num"><?= $wasteCount ?></span>
+    <span class="lbl">Total Catatan Food Waste</span>
   </div>
   <div class="card stat">
-    <div class="ico">🍳</div><span class="num"><?= $ready ?></span><span class="lbl">Resep Siap Dimasak</span>
+    <div class="ico">🍳</div>
+    <span class="num"><?= $ready ?></span>
+    <span class="lbl">Resep Siap Dimasak</span>
   </div>
 </div>
 
 <div class="grid g-main mb">
   <div class="card">
     <h2>Grafik Food Waste Bulanan</h2>
-    <div style="height:230px;position:relative"><canvas id="dashWasteBar"></canvas></div>
+    <div style="height:230px;position:relative">
+      <canvas id="dashWasteBar"></canvas>
+    </div>
   </div>
   <div class="card">
     <h2>Pantry Health Score</h2>
@@ -84,7 +99,8 @@ require __DIR__ . '/../includes/header.php';
 <div class="grid g-main mb">
   <div class="card">
     <h2>Expiration Reminder</h2>
-    <?php if (!$soon): ?><div class="empty"><b>🌱</b>Pantry masih kosong. Tambahkan bahan pertamamu!</div>
+    <?php if (!$soon): ?>
+    <div class="empty"><b>🌱</b>Pantry masih kosong. Tambahkan bahan pertamamu!</div>
     <?php else: ?>
       <ul class="list"><?php foreach ($soon as $f): [$l, $cls, $d] = expiry_info($f['expiry_date']); ?>
           <li>

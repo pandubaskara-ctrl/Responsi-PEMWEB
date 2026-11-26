@@ -4,8 +4,7 @@
 
 **Pantrio** adalah aplikasi web manajemen inventaris dapur, pemantauan kadaluwarsa, rekomendasi resep otomatis, dan pelacakan *food waste* yang mendukung **SDG 12: Responsible Consumption and Production**.
 
-Proyek ini merupakan hasil **Responsi Praktikum Pemrograman Web ** Jurusan Informatika, Fakultas Teknik, Universitas Jenderal Soedirman.
-
+Proyek ini merupakan hasil **Responsi Praktikum Pemrograman Web** Jurusan Informatika.
 ---
 
 ## 📖 Tentang Proyek

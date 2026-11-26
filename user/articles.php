@@ -12,13 +12,21 @@ if (isset($_GET['id'])) {
   }
   $pageTitle = $a['title'];
   require __DIR__ . '/../includes/header.php'; ?>
+  
   <div class="page-head">
-    <div><span class="chip"><?= e($a['category_name'] ?? 'Umum') ?></span>
+    <div>
+      <span class="chip"><?= e($a['category_name'] ?? 'Umum') ?></span>
       <h1 style="margin-top:6px"><?= e($a['title']) ?></h1>
       <p><?= fmt_date($a['created_at']) ?> · <?= e($a['author'] ?? 'Admin') ?></p>
-    </div><a class="btn btn-ghost" href="<?= url('user/articles.php') ?>">← Kembali</a>
+    </div>
+    <a class="btn btn-ghost" href="<?= url('user/articles.php') ?>">← Kembali</a>
   </div>
-  <?php if ($a['image_url']): ?><div class="hero-img"><img src="<?= e(url($a['image_url'])) ?>" alt=""></div>
+
+  <?php if ($a['image_url']): ?>
+    <div class="hero-img">
+      <img src="<?= e(url($a['image_url'])) ?>" alt="">
+    </div>
+
   <?php endif; ?>
   <div class="card" style="max-width:820px;font-size:1.02rem;line-height:1.8"><?= nl2br(e($a['content'])) ?></div>
 <?php require __DIR__ . '/../includes/footer.php';
@@ -50,13 +58,15 @@ require __DIR__ . '/../includes/header.php';
   </div>
 </div>
 <div class="card mb">
-  <form class="filters" method="get" style="margin:0"><input type="text" name="q" placeholder="Cari artikel…"
+  <form class="filters" method="get" style="margin:0">
+    <input type="text" name="q" placeholder="Cari artikel…"
       value="<?= e($q) ?>">
     <select name="cat">
       <option value="0">Semua kategori</option><?php foreach ($cats as $c): ?><option
           value="<?= $c['article_category_id'] ?>" <?= $cat == $c['article_category_id'] ? 'selected' : '' ?>>
           <?= e($c['category_name']) ?></option><?php endforeach; ?>
-    </select><button class="btn">Cari</button>
+    </select>
+        <button class="btn">Cari</button>
   </form>
 </div>
 <?php if (!$arts): ?><div class="card empty"><b>📖</b>Belum ada artikel.</div><?php else: ?>
